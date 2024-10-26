@@ -2,23 +2,35 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Register = ({ onClose }) => {
-  const [enrollment, setEnrollment] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [contactNo, setContactNo] = useState('');
   const [email, setEmail] = useState('');
+  const [departmentName, setDepartmentName] = useState('');
+  const [branchName, setBranchName] = useState('');
+  const [instituteName, setInstituteName] = useState('');
+  const [password, setPassword] = useState('');
   const [secretKey, setSecretKey] = useState('');
   const [error, setError] = useState('');
-  
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    const apiUrl = `http://localhost:5000/api/auth/register`;
     try {
-      const response = await axios.post(apiUrl, {
-        username: enrollment,
-        email,
-        password,
-        secretKey,
-      });
-      
+      const response = await axios.post(
+        `http://localhost:5000/api/auth/register`, 
+        {
+          username,
+          name,
+          contactNo,
+          email,
+          departmentName,
+          branchName,
+          instituteName,
+          password,
+          secretKey,
+        }
+      );
+
       alert('Registration Successful');
       onClose();
     } catch (error) {
@@ -33,17 +45,25 @@ const Register = ({ onClose }) => {
       <form onSubmit={handleRegister} style={formStyle}>
         <input
           type="text"
-          placeholder="Enrollment ID"
-          value={enrollment}
-          onChange={(e) => setEnrollment(e.target.value)}
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           style={inputStyle}
           required
         />
         <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={inputStyle}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Contact Number"
+          value={contactNo}
+          onChange={(e) => setContactNo(e.target.value)}
           style={inputStyle}
           required
         />
@@ -52,6 +72,38 @@ const Register = ({ onClose }) => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          style={inputStyle}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Department Name"
+          value={departmentName}
+          onChange={(e) => setDepartmentName(e.target.value)}
+          style={inputStyle}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Branch Name"
+          value={branchName}
+          onChange={(e) => setBranchName(e.target.value)}
+          style={inputStyle}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Institute Name"
+          value={instituteName}
+          onChange={(e) => setInstituteName(e.target.value)}
+          style={inputStyle}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           style={inputStyle}
           required
         />

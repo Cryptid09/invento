@@ -1,114 +1,140 @@
-.items-wrapper{
+:root {
+    --primary-color: #0065FF;
+    --secondary-color: #228B22;
+    --warning-color: #ffbf00;
+    --danger-color: #8B0000;
+    --info-color: #1E90FF;
+    --light-bg: #E6F0FF;
+    --medium-bg: #d0dde9;
+    --dark-bg: #e9cbcb;
+    --hover-bg: #f0f0f0; /* Optional hover background */
+}
+
+.items-wrapper {
     width: 100%;
     height: 45rem;
-    padding-left: 5em;
-    padding-right: 1em;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // flex-wrap: wrap;
+    padding: 0 1em; /* Consolidate padding */
     display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-  grid-template-rows: repeat(3, 1fr); /* 3 rows with equal height */
-  gap: 1rem;
-    // background-color: black;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
 }
-.items-wrapper .item{
-    width: 15vw;
-    max-height: 10rem;
-    background-color: #E6F0FF;
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .items-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .items-wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 1em;
+    }
+}
+
+.items-wrapper .item {
+    background-color: var(--light-bg);
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0px 10px;
-    color: #0065FF;
+    padding: 10px;
+    color: var(--primary-color);
+    transition: transform 0.3s, background-color 0.3s; /* Add hover effect */
 }
-.item:nth-child(2){
+
+.items-wrapper .item:hover {
+    transform: translateY(-5px);
+    background-color: var(--hover-bg); /* Background change on hover */
+}
+
+.items-wrapper .item:nth-child(2) {
     background-color: #ceedce;
-    color: #228B22;
+    color: var(--secondary-color);
 }
-.item:nth-child(3){
+
+.items-wrapper .item:nth-child(3) {
     background-color: #FFFAEB;
-    color: #ffbf00;
+    color: var(--warning-color);
 }
-.item:nth-child(4){
-    background-color: #d0dde9;
+
+.items-wrapper .item:nth-child(4) {
+    background-color: var(--medium-bg);
     color: #4a5561;
 }
-.item:nth-child(5){
-    background-color: #e9cbcb;
-    color: #8B0000;
+
+.items-wrapper .item:nth-child(5) {
+    background-color: var(--dark-bg);
+    color: var(--danger-color);
 }
-.item:nth-child(6){
+
+.items-wrapper .item:nth-child(6) {
     background-color: #c3d8ed;
-    color: #1E90FF;
+    color: var(--info-color);
 }
-.item:nth-child(7){
+
+.items-wrapper .item:nth-child(7) {
     background-color: #d2eac5;
     color: #5cd21c;
 }
 
-
-.item:nth-child(2) a{
-    color: #228B22;
-}
-.item:nth-child(3) a{
-    color: #ffbf00;
-}
-.item:nth-child(4) a{
-    color: #4a5561;
-}
-.item:nth-child(5) a{
-    color: #8B0000;
-}
-.item:nth-child(6) a{
-    color: #1E90FF;
-}
-.item:nth-child(7) a{
-    color: #5cd21c;
-}
-.icon-container{
+.icon-container {
     width: 100%;
     height: 2.6rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // background-color: bisque;
 }
-.icon-wrapper{
+
+.icon-wrapper {
     font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.icon-container h6 a{
+
+.icon-container h6 a {
     font-size: 1rem;
     text-decoration: none;
     font-weight: 500;
     display: flex;
     align-items: center;
     cursor: pointer;
+    color: inherit; /* Inherit color from parent */
 }
-.count{
+
+.count {
     width: 100%;
     height: 3.5rem;
-    // background-color: rgb(146, 89, 19);
     display: flex;
     align-items: center;
 }
-.count h1{
+
+.count h1 {
     font-size: 1.5rem;
 }
-.item-name{
+
+.item-name {
     width: 100%;
     height: 2rem;
-    // background-color: rgb(196, 230, 255);
     display: flex;
     align-items: center;
-}   
-.item-name p{
-    font-size: 1.1rem;
+}
 
+.item-name p {
+    font-size: 1.1rem;
+}
+
+/* Responsive Font Sizes */
+@media (max-width: 768px) {
+    .item-name p {
+        font-size: 1rem; 
+    }
+
+    .count h1 {
+        font-size: 1.2rem;
+    }
 }

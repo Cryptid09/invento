@@ -24,21 +24,44 @@ exports.login = async (req, res) => {
 };
 
 
-exports.register = async (req, res) => {
-  const { username, email, password, secretKey } = req.body;
 
+exports.register = async (req, res) => {
+  const {
+    username,
+    name,
+    contactNo,
+    email,
+    departmentName,
+    branchName,
+    instituteName,
+    password,
+    secretKey,
+  } = req.body;
   
   if (secretKey !== process.env.SECRET_KEY) {
     return res.status(403).json({ message: 'Invalid secret key' });
   }
 
   try {
-    const existingUser = await User.findOne({ username });
+
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
-      return res.status(400).json({ message: 'Username already taken' });
+      return res.status(400).json({ message: 'Username or email already taken' });
     }
 
-    const user = new User({ username, email, password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({
+      username,
+      name,
+      contactNo,
+      email,
+      departmentName,
+      branchName,
+      instituteName,
+      password: hashedPassword,
+    });
+
+
     await user.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {

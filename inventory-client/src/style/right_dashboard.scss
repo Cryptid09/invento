@@ -1,8 +1,34 @@
-.main-dashboard{
+.main-dashboard {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .main-dashboard {
+        flex-direction: row; /* Switch to row layout for medium screens */
+        justify-content: space-around; /* Adjust spacing */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-dashboard {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: stretch; /* Allow items to take full width */
+    }
+}
+
+@media (max-width: 480px) {
+    .main-dashboard {
+        padding: 1rem; /* Add padding for mobile */
+    }
+
+    .main-dashboard > * {
+        width: 100%; /* Make child elements full width */
+        margin-bottom: 1rem; /* Add space between elements */
+    }
 }
